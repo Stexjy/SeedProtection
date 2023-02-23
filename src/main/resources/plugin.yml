@@ -1,0 +1,5 @@
+name: SeedProtection
+version: '${project.version}'
+main: stexjy.seedprotection.main.SeedProtection
+api-version: 1.19
+authors: [ Stexjy ]
