@@ -1,5 +1,6 @@
 package stexjy.seedprotection.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
@@ -12,15 +13,14 @@ public class SeedProtectionListener implements Listener {
 
     @EventHandler
     public void onSeedBreak(BlockBreakEvent event) {
+
         final Player player = event.getPlayer();
         final Block block = event.getBlock();
 
         if(player.isSneaking()) return;
         if(!isSeed(block)) return;
 
-        final Ageable ageable = (Ageable) block.getState().getBlockData();
-
-        if(ageable.getAge() == ageable.getMaximumAge()) return;
+        if(canBeBroken(block)) return;
 
         player.sendMessage(ChatColor.RED + "Please shift to break the seed.");
         event.setCancelled(true);
@@ -28,14 +28,19 @@ public class SeedProtectionListener implements Listener {
 
     private boolean isSeed(Block block) {
         switch (block.getType()) {
-            case BEETROOT_SEEDS:
-            case MELON_SEEDS:
-            case PUMPKIN_SEEDS:
-            case WHEAT_SEEDS:
+            case BEETROOTS:
+            case MELON_STEM:
+            case PUMPKIN_STEM:
+            case WHEAT:
                 return true;
         }
 
         return false;
     }
 
+    private boolean canBeBroken(Block block) {
+        final Ageable ageable = (Ageable) block.getState().getBlockData();
+
+        return ageable.getAge() == ageable.getMaximumAge();
+    }
 }

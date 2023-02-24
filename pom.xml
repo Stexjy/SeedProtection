@@ -39,7 +39,7 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>C:\Users\goost\Desktop\prova.jar</outputFile>
+                            <outputFile>C:\Users\goost\Desktop\Spigot Development\Test Servers\Plugins\SeedProtection.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
